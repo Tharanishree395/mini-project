@@ -1,3 +1,3 @@
 # mini-project
-hello everyone
-tharanishree is a cse student
+Hello everyone
+I am a cse student
