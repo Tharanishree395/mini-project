@@ -1,18 +1,102 @@
-#!/bin/bash
-while true; do
-    echo "---------------------------------"
-    echo " FILE MANAGEMENT SYSTEM MENU"
-    echo "---------------------------------"
-    echo "1. Create file  2. Delete file"
-    echo "3. Rename file  4. List files"
-    echo "5. Exit"
-    read -p "Enter choice [1-5]: " choice
-    case $choice in
-        1) read -p "Name: " f; touch "$f"; echo "Created!";;
-        2) read -p "Name: " f; rm "$f"; echo "Deleted!";;
-        3) read -p "Old: " o; read -p "New: " n; mv "$o" "$n";;
-        4) ls -p | grep -v /;;
-        5) exit 0;;
-        *) echo "Invalid";;
-    esac
-done
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            font-family: Arial;
+        }
+
+        .calculator {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 5px;
+        }
+
+        .buttons button {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buttons button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" disabled>
+
+    <div class="buttons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">←</button>
+        <button onclick="append('/')">/</button>
+        <button onclick="append('*')">*</button><br>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('-')">-</button><br>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('+')">+</button><br>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="calculate()">=</button><br>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+    </div>
+</div>
+
+<script>
+    function append(value) {
+        document.getElementById("display").value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById("display").value = "";
+    }
+
+    function deleteLast() {
+        let current = document.getElementById("display").value;
+        document.getElementById("display").value = current.slice(0, -1);
+    }
+
+    function calculate() {
+        try {
+            let result = eval(document.getElementById("display").value);
+            document.getElementById("display").value = result;
+        } catch {
+            alert("Invalid Expression");
+        }
+    }
+</script>
+
+</body>
+</html>
